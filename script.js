@@ -54,8 +54,8 @@ function drawVisualizer() {
 
     const x = i * (barWidth + 2);
     const gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
-    gradient.addColorStop(0, '#0088cc');
-    gradient.addColorStop(1, '#00f3ff');
+    gradient.addColorStop(0, '#10b981');
+    gradient.addColorStop(1, '#2dd4bf');
 
     ctx.fillStyle = powerOn ? gradient : '#1a2228';
     ctx.fillRect(x, canvas.height - barHeights[i], barWidth, barHeights[i]);

@@ -1,19 +1,20 @@
 :root {
-  --bg-color: #0d0f12;
-  --chassis-bg: linear-gradient(145deg, #1d2127, #14171b);
-  --panel-bg: rgba(255, 255, 255, 0.03);
-  --border-color: #2a2e37;
-  --accent-cyan: #00f3ff;
-  --accent-cyan-glow: rgba(0, 243, 255, 0.4);
-  --accent-orange: #ff9d00;
-  --accent-red: #ff3366;
-  --text-main: #e2e8f0;
-  --text-muted: #8a99ad;
-  --lcd-bg: #09151c;
-  --lcd-text: #00f3ff;
-  --pad-bg: linear-gradient(145deg, #282d36, #1e2229);
-  --pad-active: #00f3ff;
-  --pad-border: #363c48;
+  --bg-color: #0d131f;
+  --chassis-bg: linear-gradient(145deg, #161e2e, #111724);
+  --panel-bg: rgba(255, 255, 255, 0.025);
+  --border-color: #243044;
+  --accent-cyan: #2dd4bf; /* Mint Teal Accent */
+  --accent-cyan-glow: rgba(45, 212, 191, 0.4);
+  --accent-orange: #fb923c; /* Soft Copper Amber */
+  --accent-red: #f43f5e; /* Rose Red */
+  --accent-emerald: #10b981;
+  --text-main: #f1f5f9;
+  --text-muted: #7889a4;
+  --lcd-bg: #071518;
+  --lcd-text: #2dd4bf;
+  --pad-bg: linear-gradient(145deg, #1e293b, #162030);
+  --pad-active: #2dd4bf;
+  --pad-border: #2d3b52;
   --font-main: 'Inter', sans-serif;
   --font-display: 'Orbitron', monospace;
 }
@@ -27,8 +28,8 @@
 body {
   background-color: var(--bg-color);
   background-image: 
-    radial-gradient(circle at 50% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(255, 51, 102, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 50% 20%, rgba(45, 212, 191, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(251, 146, 60, 0.05) 0%, transparent 50%);
   color: var(--text-main);
   font-family: var(--font-main);
   min-height: 100vh;
@@ -66,7 +67,7 @@ body {
   font-weight: 900;
   color: var(--accent-cyan);
   margin-left: 8px;
-  text-shadow: 0 0 10px var(--accent-cyan-glow);
+  text-shadow: 0 0 12px var(--accent-cyan-glow);
 }
 
 .subtitle {
@@ -85,8 +86,8 @@ body {
   border-radius: 16px;
   padding: 24px;
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    0 25px 60px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -95,7 +96,7 @@ body {
 }
 
 .drum-machine-chassis.off {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 /* Control Header Section */
@@ -122,8 +123,8 @@ body {
 
 /* Power Button */
 .power-toggle {
-  background: #1b1f26;
-  border: 1px solid #323846;
+  background: #141b29;
+  border: 1px solid #28354c;
   border-radius: 8px;
   padding: 8px 16px;
   color: var(--text-muted);
@@ -141,18 +142,18 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #444;
+  background: #334155;
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
 }
 
 .power-toggle.active {
   color: var(--text-main);
-  border-color: #00ff88;
+  border-color: var(--accent-emerald);
 }
 
 .power-toggle.active .power-led {
-  background: #00ff88;
-  box-shadow: 0 0 8px #00ff88;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 10px var(--accent-emerald);
 }
 
 /* Display & Visualizer Section */
@@ -164,8 +165,8 @@ body {
   background: var(--lcd-bg);
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 243, 255, 0.2);
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(45, 212, 191, 0.25);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.85);
 }
 
 .lcd-screen {
@@ -183,17 +184,17 @@ body {
 .lcd-badge {
   font-family: var(--font-display);
   font-size: 9px;
-  background: rgba(0, 243, 255, 0.1);
+  background: rgba(45, 212, 191, 0.1);
   color: var(--accent-cyan);
   padding: 2px 6px;
   border-radius: 4px;
-  border: 1px solid rgba(0, 243, 255, 0.3);
+  border: 1px solid rgba(45, 212, 191, 0.3);
 }
 
 .rec-badge {
-  background: rgba(255, 51, 102, 0.15);
+  background: rgba(244, 63, 94, 0.15);
   color: var(--accent-red);
-  border-color: rgba(255, 51, 102, 0.4);
+  border-color: rgba(244, 63, 94, 0.4);
   display: none;
 }
 
@@ -220,15 +221,15 @@ body {
 }
 
 #visualizer {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   border-radius: 4px;
-  border: 1px solid rgba(0, 243, 255, 0.15);
+  border: 1px solid rgba(45, 212, 191, 0.2);
 }
 
 /* Sound Bank Buttons */
 .bank-switch-group {
   display: flex;
-  background: #15181e;
+  background: #111724;
   padding: 3px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -249,8 +250,8 @@ body {
 
 .bank-btn.active {
   background: var(--accent-orange);
-  color: #000;
-  box-shadow: 0 0 10px rgba(255, 157, 0, 0.4);
+  color: #0f172a;
+  box-shadow: 0 0 12px rgba(251, 146, 60, 0.4);
 }
 
 /* Master Sliders Section */
@@ -297,7 +298,7 @@ input[type="range"] {
   appearance: none;
   width: 100%;
   height: 6px;
-  background: #181c23;
+  background: #111724;
   border-radius: 3px;
   outline: none;
   border: 1px solid var(--border-color);
@@ -310,7 +311,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--accent-cyan);
   cursor: pointer;
-  box-shadow: 0 0 8px var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
   transition: transform 0.1s ease;
 }
 
@@ -337,8 +338,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
   cursor: pointer;
   user-select: none;
   box-shadow: 
-    0 6px 12px rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    0 8px 16px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
   transition: all 0.1s ease;
   position: relative;
   overflow: hidden;
@@ -346,18 +347,18 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .drum-pad:hover {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+  box-shadow: 0 0 18px rgba(45, 212, 191, 0.25);
 }
 
 .drum-pad.active, .drum-pad:active {
   transform: scale(0.96);
-  background: linear-gradient(145deg, #00f3ff, #0088cc);
+  background: linear-gradient(145deg, #2dd4bf, #0d9488);
   border-color: #ffffff;
-  box-shadow: 0 0 25px var(--accent-cyan);
+  box-shadow: 0 0 28px var(--accent-cyan);
 }
 
 .drum-pad.active .pad-key, .drum-pad.active .pad-title {
-  color: #000;
+  color: #042f2e;
   font-weight: 900;
 }
 
@@ -405,7 +406,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .seq-btn {
   flex: 1;
   min-width: 90px;
-  background: #181c23;
+  background: #111724;
   border: 1px solid var(--border-color);
   color: var(--text-main);
   font-family: var(--font-display);
@@ -424,7 +425,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .seq-btn.rec.recording {
   background: var(--accent-red);
   color: #fff;
-  box-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.5);
   border-color: #fff;
 }
 
@@ -436,9 +437,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .seq-btn.play.playing {
-  background: #00ff88;
-  color: #000;
-  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+  background: var(--accent-emerald);
+  color: #022c22;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
 }
 
 .seq-btn.loop.active {
@@ -461,7 +462,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .preset-btn {
-  background: #15181e;
+  background: #111724;
   border: 1px solid var(--border-color);
   color: var(--text-muted);
   font-size: 10px;
@@ -502,8 +503,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 kbd {
-  background: #1e2229;
-  border: 1px solid #363c48;
+  background: #1e293b;
+  border: 1px solid #334155;
   border-radius: 4px;
   padding: 2px 6px;
   font-family: var(--font-display);
