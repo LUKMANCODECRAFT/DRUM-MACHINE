@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRO DRUM MACHINE | Studio Workstation</title>
+  <!-- Google Fonts for Synth Display & UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="main-container">
+    <header class="app-header">
+      <div class="logo">
+        <span class="brand">STUDIO</span><span class="model">BEAT-909</span>
+      </div>
+      <div class="subtitle">PROFESSIONAL SEQUENCER & SAMPLER WORKSTATION</div>
+    </header>
+
+    <div id="drum-machine" class="drum-machine-chassis">
+      
+      <!-- Top Control Header -->
+      <div class="control-header">
+        <div class="power-section">
+          <label class="switch-label">POWER</label>
+          <button id="power-btn" class="power-toggle active" title="Toggle Power">
+            <span class="power-led"></span>
+            <span class="power-text">ON</span>
+          </button>
+        </div>
+
+        <!-- Master LCD Display & Visualizer -->
+        <div class="display-section">
+          <div class="lcd-screen">
+            <div class="lcd-header">
+              <span id="bank-indicator" class="lcd-badge">KIT 1: HEATER</span>
+              <span id="tempo-indicator" class="lcd-badge">120 BPM</span>
+              <span id="rec-indicator" class="lcd-badge rec-badge">REC</span>
+            </div>
+            <div id="display" class="lcd-main-text">READY</div>
+          </div>
+          <canvas id="visualizer" width="160" height="42"></canvas>
+        </div>
+
+        <div class="bank-section">
+          <label class="switch-label">SOUND BANK</label>
+          <div class="bank-switch-group">
+            <button id="bank1-btn" class="bank-btn active">KIT 1</button>
+            <button id="bank2-btn" class="bank-btn">KIT 2</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Controls Bar: Volume & BPM -->
+      <div class="master-controls">
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>VOLUME</span>
+            <span id="volume-val">80%</span>
+          </div>
+          <div class="slider-wrapper">
+            <button id="mute-btn" class="icon-btn" title="Mute/Unmute">🔊</button>
+            <input type="range" id="volume-slider" min="0" max="100" value="80">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label-row">
+            <span>TEMPO (BPM)</span>
+            <span id="bpm-val">120 BPM</span>
+          </div>
+          <div class="slider-wrapper">
+            <input type="range" id="bpm-slider" min="60" max="180" value="120">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3x3 Drum Pad Grid -->
+      <div id="pad-bank" class="pad-grid">
+        <!-- Pad Q -->
+        <div class="drum-pad" id="Heater-1" data-key="Q" 
+             data-kit1-name="Heater 1" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Heater-1.mp3"
+             data-kit2-name="Chord 1" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Chord_1.mp3">
+          <span class="pad-key">Q</span>
+          <span class="pad-title">Heater 1</span>
+          <audio class="clip" id="Q" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-1.mp3"></audio>
+        </div>
+
+        <!-- Pad W -->
+        <div class="drum-pad" id="Heater-2" data-key="W"
+             data-kit1-name="Heater 2" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Heater-2.mp3"
+             data-kit2-name="Chord 2" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Chord_2.mp3">
+          <span class="pad-key">W</span>
+          <span class="pad-title">Heater 2</span>
+          <audio class="clip" id="W" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-2.mp3"></audio>
+        </div>
+
+        <!-- Pad E -->
+        <div class="drum-pad" id="Heater-3" data-key="E"
+             data-kit1-name="Heater 3" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Heater-3.mp3"
+             data-kit2-name="Chord 3" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Chord_3.mp3">
+          <span class="pad-key">E</span>
+          <span class="pad-title">Heater 3</span>
+          <audio class="clip" id="E" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-3.mp3"></audio>
+        </div>
+
+        <!-- Pad A -->
+        <div class="drum-pad" id="Heater-4" data-key="A"
+             data-kit1-name="Heater 4" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Heater-4_1.mp3"
+             data-kit2-name="Shaker" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Give_us_a_light.mp3">
+          <span class="pad-key">A</span>
+          <span class="pad-title">Heater 4</span>
+          <audio class="clip" id="A" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-4_1.mp3"></audio>
+        </div>
+
+        <!-- Pad S -->
+        <div class="drum-pad" id="Clap" data-key="S"
+             data-kit1-name="Clap" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Heater-6.mp3"
+             data-kit2-name="Open HH" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Dry_Ohh.mp3">
+          <span class="pad-key">S</span>
+          <span class="pad-title">Clap</span>
+          <audio class="clip" id="S" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-6.mp3"></audio>
+        </div>
+
+        <!-- Pad D -->
+        <div class="drum-pad" id="Open-HH" data-key="D"
+             data-kit1-name="Open HH" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Dsc_Oh.mp3"
+             data-kit2-name="Closed HH" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Bld_H1.mp3">
+          <span class="pad-key">D</span>
+          <span class="pad-title">Open HH</span>
+          <audio class="clip" id="D" src="https://cdn.freecodecamp.org/curriculum/drum/Dsc_Oh.mp3"></audio>
+        </div>
+
+        <!-- Pad Z -->
+        <div class="drum-pad" id="Kick-n-Hat" data-key="Z"
+             data-kit1-name="Kick 'n Hat" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Kick_n_Hat.mp3"
+             data-kit2-name="Punchy Kick" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/punchy_kick_1.mp3">
+          <span class="pad-key">Z</span>
+          <span class="pad-title">Kick 'n Hat</span>
+          <audio class="clip" id="Z" src="https://cdn.freecodecamp.org/curriculum/drum/Kick_n_Hat.mp3"></audio>
+        </div>
+
+        <!-- Pad X -->
+        <div class="drum-pad" id="Kick" data-key="X"
+             data-kit1-name="Kick" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/RP4_KICK_1.mp3"
+             data-kit2-name="Side Stick" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/side_stick_1.mp3">
+          <span class="pad-key">X</span>
+          <span class="pad-title">Kick</span>
+          <audio class="clip" id="X" src="https://cdn.freecodecamp.org/curriculum/drum/RP4_KICK_1.mp3"></audio>
+        </div>
+
+        <!-- Pad C -->
+        <div class="drum-pad" id="Closed-HH" data-key="C"
+             data-kit1-name="Closed HH" data-kit1-src="https://cdn.freecodecamp.org/curriculum/drum/Cev_H2.mp3"
+             data-kit2-name="Snare" data-kit2-src="https://cdn.freecodecamp.org/curriculum/drum/Brk_Snr.mp3">
+          <span class="pad-key">C</span>
+          <span class="pad-title">Closed HH</span>
+          <audio class="clip" id="C" src="https://cdn.freecodecamp.org/curriculum/drum/Cev_H2.mp3"></audio>
+        </div>
+      </div>
+
+      <!-- Recorder & Sequencer Control Panel -->
+      <div class="sequencer-panel">
+        <div class="sec-title">PATTERN SEQUENCER & RECORDER</div>
+        <div class="sequencer-controls">
+          <button id="rec-btn" class="seq-btn rec">
+            <span class="dot"></span> REC
+          </button>
+          <button id="play-btn" class="seq-btn play">▶ PLAY</button>
+          <button id="loop-btn" class="seq-btn loop">🔁 LOOP: OFF</button>
+          <button id="clear-btn" class="seq-btn clear">🗑 CLEAR</button>
+        </div>
+        
+        <div class="preset-controls">
+          <span class="preset-label">PRESET BEATS:</span>
+          <button class="preset-btn" data-preset="hiphop">HIP-HOP</button>
+          <button class="preset-btn" data-preset="house">HOUSE</button>
+          <button class="preset-btn" data-preset="rock">ROCK</button>
+        </div>
+      </div>
+
+      <!-- Keyboard Reference Legend -->
+      <footer class="keyboard-legend">
+        <div class="legend-title">KEYBOARD SHORTCUTS</div>
+        <div class="legend-keys">
+          <span><kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd> Top Row</span>
+          <span><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Mid Row</span>
+          <span><kbd>Z</kbd><kbd>X</kbd><kbd>C</kbd> Bottom Row</span>
+          <span><kbd>Space</kbd> Play Loop</span>
+          <span><kbd>R</kbd> Record</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
